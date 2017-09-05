@@ -1,1 +1,1 @@
-# classfilereader
+# A Java Class File Format Reader

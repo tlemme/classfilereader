@@ -1,2 +1,11 @@
 apply plugin: 'java'
 
+dependencies{
+    testCompile 'junit:junit:4.8.+'
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.8.+'
+
+}
+
+repositories{
+    mavenCentral()
+}

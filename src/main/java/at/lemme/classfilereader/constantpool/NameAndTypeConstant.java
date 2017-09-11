@@ -21,6 +21,6 @@ public final class NameAndTypeConstant implements Constant {
 
     @Override
     public String toString() {
-        return "[MethodRefConstant nameIndex=" + nameIndex + ", descriptorIndex=\"" + descriptorIndex + "\"]";
+        return "[NameAndTypeConstant nameIndex=" + nameIndex + ", descriptorIndex=\"" + descriptorIndex + "\"]";
     }
 }

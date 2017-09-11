@@ -3,6 +3,7 @@
 
 # dirs
 .gradle/
+.idea/
 build/
 out/
 
@@ -11,9 +12,11 @@ out/
 
 # BlueJ files
 *.ctxt
+*.iml
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
+/gradle/wqrapper/gradle-wrapper.properties
 
 # Package Files #
 *.jar

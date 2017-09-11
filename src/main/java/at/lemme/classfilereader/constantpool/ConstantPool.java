@@ -18,7 +18,7 @@ public class ConstantPool {
         System.out.println(count);
 
         Constant[] constants = new Constant[count];
-        for (int i = 0; i < count; i++) {
+        for (int i = 1; i < count; i++) {
             constants[i] = Constant.read(input);
         }
 
@@ -30,7 +30,7 @@ public class ConstantPool {
         StringBuilder sb = new StringBuilder("Constant Pool:\n");
         for (int i = 0; i < constants.length; i++) {
 
-            sb.append("-").append(String.format("%3d ", i+1))
+            sb.append("-").append(String.format("%3d ", i))
                     .append(constants[i]).append("\n");
         }
         return sb.toString();

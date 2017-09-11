@@ -17,7 +17,7 @@ public class PrintClassFile {
         StringBuilder sb = new StringBuilder();
         while((length = is.read(buffer)) > 0){
             for (int i = 0; i < length; i++) {
-                sb.append(String.format("%02X ", buffer[i]));
+                sb.append(String.format("%2X ", buffer[i]));
             }
             sb.append("\n");
         }

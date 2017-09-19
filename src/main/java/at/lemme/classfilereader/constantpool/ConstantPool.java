@@ -2,6 +2,9 @@ package at.lemme.classfilereader.constantpool;
 
 import java.io.DataInput;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ConstantPool {
 
@@ -15,7 +18,6 @@ public class ConstantPool {
 
     public static ConstantPool read(DataInput input) throws IOException {
         int count = input.readUnsignedShort();
-        System.out.println(count);
 
         Constant[] constants = new Constant[count];
         for (int i = 1; i < count; i++) {
@@ -30,9 +32,22 @@ public class ConstantPool {
         StringBuilder sb = new StringBuilder("Constant Pool:\n");
         for (int i = 0; i < constants.length; i++) {
 
-            sb.append("-").append(String.format("%3d ", i))
-                    .append(constants[i]).append("\n");
+            sb.append("-").append(String.format("%3d ", i));
+            if (constants[i] != null) {
+
+                sb.append(constants[i].toString(constants));
+            }
+            sb.append("\n");
         }
         return sb.toString();
     }
+
+    public Constant find(int i) {
+        return constants[i];
+    }
+
+    public List<Constant> findByType(Type type) {
+        return Arrays.stream(constants).filter(c->c.getType() == type).collect(Collectors.toList());
+    }
+
 }

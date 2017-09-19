@@ -22,21 +22,20 @@ public interface Constant {
 
     static Constant read(DataInput input) throws IOException {
         int tag = input.readUnsignedByte();
-//        ConstantType type = ConstantType.fromValue(tag);
-        System.out.println(tag);
-        switch (tag) {
+        Type type = Type.fromValue(tag);
+        switch (type) {
             case CONSTANT_UTF8:
-                return Utf8Constant.read(input);
+                return ConstantUtf8.read(input);
             case CONSTANT_CLASS:
-                return ClassConstant.read(input);
+                return ConstantClass.read(input);
             case CONSTANT_FIELDREF:
-                throw new UnsupportedOperationException("Not yet implemented");
+                return ConstantFieldRef.read(input);
             case CONSTANT_METHODREF:
-                return MethodRefConstant.read(input);
+                return ConstantMethodRef.read(input);
             case CONSTANT_INTERFACE_METHODREF:
                 throw new UnsupportedOperationException("Not yet implemented");
             case CONSTANT_STRING:
-                throw new UnsupportedOperationException("Not yet implemented");
+                return ConstantString.read(input);
             case CONSTANT_INTEGER:
                 throw new UnsupportedOperationException("Not yet implemented");
             case CONSTANT_FLOAT:
@@ -46,7 +45,7 @@ public interface Constant {
             case CONSTANT_DOUBLE:
                 throw new UnsupportedOperationException("Not yet implemented");
             case CONSTANT_NAME_AND_TYPE:
-                return NameAndTypeConstant.read(input);
+                return ConstantNameAndType.read(input);
             case CONSTANT_METHOD_HANDLE:
                 throw new UnsupportedOperationException("Not yet implemented");
             case CONSTANT_METHOD_TYPE:
@@ -55,6 +54,10 @@ public interface Constant {
                 throw new UnsupportedOperationException("Not yet implemented");
         }
 
-       return null;// throw new IllegalArgumentException("Not yet implemented " + tag);
+        return null;// throw new IllegalArgumentException("Not yet implemented " + tag);
     }
+
+    Type getType();
+
+    String toString(Constant[] pool);
 }

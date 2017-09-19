@@ -1,6 +1,6 @@
 package at.lemme.classfilereader.constantpool;
 
-public enum ConstantType {
+public enum Type {
 
     CONSTANT_CLASS(7),
     CONSTANT_FIELDREF(9),
@@ -19,12 +19,12 @@ public enum ConstantType {
 
     public final int value;
 
-    ConstantType(int value) {
+    Type(int value) {
         this.value = value;
     }
 
-    public static ConstantType fromValue(int value) {
-        for (ConstantType c : values()) {
+    public static Type fromValue(int value) {
+        for (Type c : values()) {
             if (c.value == value) {
                 return c;
             }

@@ -33,31 +33,29 @@ public interface Constant {
             case CONSTANT_METHODREF:
                 return ConstantMethodRef.read(input);
             case CONSTANT_INTERFACE_METHODREF:
-                throw new UnsupportedOperationException("Not yet implemented");
+                return ConstantInterfaceMethodRef.read(input);
             case CONSTANT_STRING:
                 return ConstantString.read(input);
             case CONSTANT_INTEGER:
-                throw new UnsupportedOperationException("Not yet implemented");
+                return ConstantInteger.read(input);
             case CONSTANT_FLOAT:
-                throw new UnsupportedOperationException("Not yet implemented");
+                return ConstantFloat.read(input);
             case CONSTANT_LONG:
-                throw new UnsupportedOperationException("Not yet implemented");
+                return ConstantLong.read(input);
             case CONSTANT_DOUBLE:
-                throw new UnsupportedOperationException("Not yet implemented");
+                return ConstantDouble.read(input);
             case CONSTANT_NAME_AND_TYPE:
                 return ConstantNameAndType.read(input);
             case CONSTANT_METHOD_HANDLE:
-                throw new UnsupportedOperationException("Not yet implemented");
+                return ConstantMethodHandle.read(input);
             case CONSTANT_METHOD_TYPE:
-                throw new UnsupportedOperationException("Not yet implemented");
+                return ConstantMethodType.read(input);
             case CONSTANT_INVOKE_DYNAMIC:
-                throw new UnsupportedOperationException("Not yet implemented");
+                return ConstantInvokeDynamic.read(input);
         }
 
-        return null;// throw new IllegalArgumentException("Not yet implemented " + tag);
+        throw new IllegalArgumentException("Unknown tag " + tag);
     }
-
-    Type getType();
 
     String toString(Constant[] pool);
 }

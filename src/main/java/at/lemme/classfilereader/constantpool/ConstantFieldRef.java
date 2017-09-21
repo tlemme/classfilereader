@@ -20,17 +20,12 @@ public final class ConstantFieldRef implements Constant {
     }
 
     @Override
-    public Type getType() {
-        return Type.CONSTANT_FIELDREF;
-    }
-
-    @Override
     public String toString() {
-        return "[" + getType() + " classIndex=" + classIndex + ", nameAndTypeIndex=\"" + nameAndTypeIndex + "\"]";
+        return "[ConstantFieldRef classIndex=" + classIndex + ", nameAndTypeIndex=\"" + nameAndTypeIndex + "\"]";
     }
 
     @Override
     public String toString(Constant[] pool) {
-        return "[" + getType() + " class=" + pool[classIndex].toString(pool) + ", nameAndType=\"" + pool[nameAndTypeIndex].toString(pool) + "\"]";
+        return "[ConstantFieldRef class=" + pool[classIndex].toString(pool) + ", nameAndType=\"" + pool[nameAndTypeIndex].toString(pool) + "\"]";
     }
 }

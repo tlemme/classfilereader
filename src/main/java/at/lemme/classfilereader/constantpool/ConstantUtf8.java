@@ -12,21 +12,10 @@ public final class ConstantUtf8 implements Constant {
     }
 
     public static ConstantUtf8 read(DataInput input) throws IOException {
-
-        int u1 = input.readUnsignedByte();
-        int u2 = input.readUnsignedShort();
-        int u4 = input.readInt();
-
-
         int length = input.readUnsignedShort();
         byte[] bytes = new byte[length];
         input.readFully(bytes);
         return new ConstantUtf8(bytes);
-    }
-
-    @Override
-    public Type getType() {
-        return Type.CONSTANT_UTF8;
     }
 
     public String getString(){
@@ -35,7 +24,7 @@ public final class ConstantUtf8 implements Constant {
 
     @Override
     public String toString() {
-        return String .format("[%s length=%3d, content=\"%s\"]", getType(), bytes.length, new String(bytes));
+        return String .format("[ConstantUtf8 length=%3d, content=\"%s\"]", bytes.length, new String(bytes));
     }
 
     @Override

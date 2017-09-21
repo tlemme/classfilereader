@@ -18,10 +18,13 @@ public class ConstantPool {
 
     public static ConstantPool read(DataInput input) throws IOException {
         int count = input.readUnsignedShort();
-
         Constant[] constants = new Constant[count];
         for (int i = 1; i < count; i++) {
             constants[i] = Constant.read(input);
+            //System.out.println(i+":"+constants[i]);
+            if(constants[i] instanceof ConstantLong || constants[i] instanceof ConstantDouble){
+                i++;
+            }
         }
 
         return new ConstantPool(count, constants);
@@ -42,12 +45,7 @@ public class ConstantPool {
         return sb.toString();
     }
 
-    public Constant find(int i) {
-        return constants[i];
+    public Constant[] getConstants() {
+        return constants;
     }
-
-    public List<Constant> findByType(Type type) {
-        return Arrays.stream(constants).filter(c->c.getType() == type).collect(Collectors.toList());
-    }
-
 }

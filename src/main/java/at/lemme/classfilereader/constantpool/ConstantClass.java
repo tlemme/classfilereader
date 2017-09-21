@@ -16,18 +16,12 @@ public final class ConstantClass implements Constant {
         return new ConstantClass(nameIndex);
     }
 
-    @Override
-    public Type getType() {
-        return Type.CONSTANT_CLASS;
-    }
-
-    @Override
     public String toString() {
-        return "[" + getType() + " nameIndex=" + nameIndex + "]";
+        return "[ConstantClass nameIndex=" + nameIndex + "]";
     }
 
     @Override
     public String toString(Constant[] pool) {
-        return "[" + getType() + " name=" + pool[nameIndex].toString(pool) + "]";
+        return "[ConstantClass name=" + pool[nameIndex].toString(pool) + "]";
     }
 }

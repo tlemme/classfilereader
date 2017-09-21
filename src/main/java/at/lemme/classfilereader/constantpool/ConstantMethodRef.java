@@ -20,17 +20,12 @@ public final class ConstantMethodRef implements Constant {
     }
 
     @Override
-    public Type getType() {
-        return Type.CONSTANT_METHODREF;
-    }
-
-    @Override
     public String toString() {
-        return "[" + getType() + " classIndex=" + classIndex + ", nameAndTypeIndex=\"" + nameAndTypeIndex + "\"]";
+        return "[ConstantMethodRef classIndex=" + classIndex + ", nameAndTypeIndex=\"" + nameAndTypeIndex + "\"]";
     }
 
     @Override
     public String toString(Constant[] pool) {
-        return "[" + getType() + " class=" + pool[classIndex].toString(pool) + ", nameAndType=\"" + pool[nameAndTypeIndex].toString(pool) + "\"]";
+        return "[ConstantMethodRef class=" + pool[classIndex].toString(pool) + ", nameAndType=\"" + pool[nameAndTypeIndex].toString(pool) + "\"]";
     }
 }

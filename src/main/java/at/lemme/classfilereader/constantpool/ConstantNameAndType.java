@@ -20,17 +20,12 @@ public final class ConstantNameAndType implements Constant {
     }
 
     @Override
-    public Type getType() {
-        return Type.CONSTANT_NAME_AND_TYPE;
-    }
-
-    @Override
     public String toString() {
-        return "[" + getType() + " nameIndex=" + nameIndex + ", descriptorIndex=\"" + descriptorIndex + "\"]";
+        return "[ConstantNameAndType nameIndex=" + nameIndex + ", descriptorIndex=\"" + descriptorIndex + "\"]";
     }
 
     @Override
     public String toString(Constant[] pool) {
-        return "[" + getType() + " name=" + pool[nameIndex].toString(pool) + ", descriptor=\"" + pool[descriptorIndex].toString(pool) + "\"]";
+        return "[ConstantNameAndType name=" + pool[nameIndex].toString(pool) + ", descriptor=\"" + pool[descriptorIndex].toString(pool) + "\"]";
     }
 }

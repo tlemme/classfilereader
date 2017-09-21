@@ -9,13 +9,11 @@ import java.io.InputStream;
 
 public class ClassFile {
 
-    private int majorVersion;
-    private int minorVersion;
+    private final Version version;
     private final ConstantPool constantPool;
 
-    private ClassFile(int majorVersion, int minorVersion, ConstantPool constantPool){
-        this.majorVersion = majorVersion;
-        this.minorVersion = minorVersion;
+    private ClassFile(Version version, ConstantPool constantPool){
+        this.version = version;
         this.constantPool = constantPool;
     }
 
@@ -24,12 +22,11 @@ public class ClassFile {
 
         readMagic(input);
 
-        int minorVersion = input.readUnsignedShort();
-        int majorVersion = input.readUnsignedShort();
+        Version version = readVersion(input);
 
         ConstantPool constantPool = ConstantPool.read(input);
 
-        return new ClassFile(majorVersion, minorVersion, constantPool);
+        return new ClassFile(version, constantPool);
     }
 
     private static void readMagic(DataInput in) throws IOException {
@@ -38,6 +35,16 @@ public class ClassFile {
             throw new IllegalArgumentException("Magic is expected to be 0xCAFEBABE. " +
                     "Argument is not a Java Class File!");
         }
+    }
+
+    private static Version readVersion(DataInput input) throws IOException {
+        int minorVersion = input.readUnsignedShort();
+        int majorVersion = input.readUnsignedShort();
+        return Version.of(majorVersion, minorVersion);
+    }
+
+    public Version getVersion() {
+        return version;
     }
 
     public ConstantPool getConstantPool() {

@@ -6,7 +6,6 @@ import java.io.IOException;
 public final class ConstantString implements Constant {
     private final int stringIndex;
 
-
     ConstantString(int stringIndex) {
         this.stringIndex = stringIndex;
     }
@@ -17,17 +16,12 @@ public final class ConstantString implements Constant {
     }
 
     @Override
-    public Type getType() {
-        return Type.CONSTANT_STRING;
-    }
-
-    @Override
     public String toString() {
-        return "[" + getType() + " stringIndex=" + stringIndex + "]";
+        return "[ConstantString stringIndex=" + stringIndex + "]";
     }
 
     @Override
     public String toString(Constant[] pool) {
-        return "[" + getType() + " string=" + pool[stringIndex].toString(pool) + "]";
+        return "[ConstantString string=" + pool[stringIndex].toString(pool) + "]";
     }
 }

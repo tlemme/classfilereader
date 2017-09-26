@@ -7,15 +7,18 @@ import java.io.InputStream;
 
 public class ClassFile {
 
-    private ClassFile(){
+    private final Version version;
+
+    private ClassFile(Version version){
+        this.version = version;
     }
 
     public static ClassFile read(InputStream is) throws IOException {
         DataInput input = new DataInputStream(is);
 
         readMagic(input);
-
-        return new ClassFile();
+        Version version = readVersion(input);
+        return new ClassFile(version);
     }
 
     private static void readMagic(DataInput in) throws IOException {
@@ -24,5 +27,15 @@ public class ClassFile {
             throw new IllegalArgumentException("Magic is expected to be 0xCAFEBABE. " +
                     "Argument is not a Java Class File!");
         }
+    }
+
+    private static Version readVersion(DataInput input) throws IOException {
+        int minorVersion = input.readUnsignedShort();
+        int majorVersion = input.readUnsignedShort();
+        return Version.of(majorVersion, minorVersion);
+    }
+
+    public Version getVersion() {
+        return version;
     }
 }

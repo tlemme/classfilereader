@@ -10,12 +10,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 
 
-public class TestMagicNumber {
+public class MagicNumberTest {
 
     @Test
     public void test() throws IOException {
         // GIVEN
-        InputStream is = TestMagicNumber.class.getResourceAsStream("/EmptyClass.class");
+        InputStream is = MagicNumberTest.class.getResourceAsStream("/EmptyClass.class");
 
         // WHEN
         ClassFile classFile = ClassFile.read(is);
@@ -27,7 +27,7 @@ public class TestMagicNumber {
     @Test(expected = IllegalArgumentException.class)
     public void testNotAClass() throws IOException {
         // GIVEN
-        InputStream is = TestMagicNumber.class.getResourceAsStream("/notAClass.txt");
+        InputStream is = MagicNumberTest.class.getResourceAsStream("/notAClass.txt");
 
         // WHEN
         ClassFile classFile = ClassFile.read(is);

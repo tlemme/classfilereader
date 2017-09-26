@@ -1,5 +1,5 @@
 # Compiled class file
-*.class
+# *.class We need Test data
 
 # dirs
 .gradle/

@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.jar.JarEntry;
@@ -37,7 +38,9 @@ public class ClassPathTest {
 //                            && !entry.getName().contains("AccessBridge")
                             ) {
                         //System.out.println(entry);
-                        ClassFile.read(jar.getInputStream(entry));
+                        InputStream is = jar.getInputStream(entry);
+                        ClassFile.read(is);
+                        is.close();
                         cnt++;
                     }
                 }

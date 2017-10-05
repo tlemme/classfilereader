@@ -9,7 +9,7 @@ public class PrintClassFile {
 
     public static void main(String[] args) throws IOException {
         String resName = ClassExample.class.getName().replaceAll("\\.", "/") + ".class";
-        InputStream is = ReadClassFile.class.getResourceAsStream("/"+resName);
+        InputStream is = ReadClassFile.class.getResourceAsStream("/SampleClass7.class");
         String byteString = bytesToString(is, 16);
         System.out.println(byteString);
     }

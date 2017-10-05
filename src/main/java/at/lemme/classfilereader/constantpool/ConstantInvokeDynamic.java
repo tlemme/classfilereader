@@ -26,6 +26,6 @@ public final class ConstantInvokeDynamic implements Constant {
 
     @Override
     public String toString(Constant[] pool) {
-        return "[ConstantInvokeDynamic class=" + pool[bootstrapMethodAttrIndex].toString(pool) + ", nameAndType=\"" + pool[nameAndTypeIndex].toString(pool) + "\"]";
+        return "[ConstantInvokeDynamic bootstrapMethodAttrIndex=" + bootstrapMethodAttrIndex + ", nameAndType=\"" + pool[nameAndTypeIndex].toString(pool) + "\"]";
     }
 }

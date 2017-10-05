@@ -16,7 +16,7 @@ public class TestConstantPool {
     @Test
     public void testInterfaceWithoutErrors() throws IOException {
         String resName = InterfaceExample.class.getName().replaceAll("\\.", "/") + ".class";
-        InputStream is = ReadClassFile.class.getResourceAsStream("/"+resName);
+        InputStream is = ReadClassFile.class.getResourceAsStream("/" + resName);
         ClassFile cf = ClassFile.read(is);
 //        Assertions.assertThat(cf.getConstantPool().)
 //        cf.getConstantPool().findByType(Type.CONSTANT_UTF8).stream().anyMatch(c->"getValue".equals(((ConstantUtf8)c).getString()));
@@ -30,6 +30,12 @@ public class TestConstantPool {
 //        is.close();
         InputStream is = ReadClassFile.class.getResourceAsStream("/" + resName);
         ClassFile cf = ClassFile.read(is);
+        Constant[] constants = cf.getConstantPool().getConstants();
+
+        for (int i = 1; i < constants.length; i++) {
+            System.out.println(i + ":" + (constants[i] == null? null:constants[i].toString(constants)));
+
+        }
 //        Assertions.assertThat(cf.getConstantPool().)
 //        cf.getConstantPool().findByType(Type.CONSTANT_UTF8).stream().anyMatch(c->"getValue".equals(((ConstantUtf8)c).getString()));
     }
@@ -38,7 +44,7 @@ public class TestConstantPool {
         byte[] buffer = new byte[bytesInARow];
         int length = 0;
         StringBuilder sb = new StringBuilder();
-        while((length = is.read(buffer)) > 0){
+        while ((length = is.read(buffer)) > 0) {
             for (int i = 0; i < length; i++) {
                 sb.append(String.format("%02X ", buffer[i]));
             }

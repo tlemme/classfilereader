@@ -1,7 +1,5 @@
-package at.lemme.classfilereader.test;
+package at.lemme.classfilereader;
 
-import at.lemme.classfilereader.ClassFile;
-import at.lemme.classfilereader.Version;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -39,7 +37,7 @@ public class ReadVersionsTest {
     public Version version;
 
     @Test
-    public void testReadVersion1_2() throws IOException {
+    public void testReadVersion() throws IOException {
         // GIVEN
         InputStream in = ReadVersionsTest.class.getResourceAsStream(
                 "/versions/SampleClass" + versionSuffix + ".class");

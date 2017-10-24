@@ -1,5 +1,7 @@
 package at.lemme.classfilereader;
 
+import at.lemme.classfilereader.constantpool.ConstantPool;
+
 import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -8,9 +10,11 @@ import java.io.InputStream;
 public class ClassFile {
 
     private final Version version;
+    private final ConstantPool constantPool;
 
-    private ClassFile(Version version){
+    private ClassFile(Version version, ConstantPool constantPool){
         this.version = version;
+        this.constantPool = constantPool;
     }
 
     public static ClassFile read(InputStream is) throws IOException {
@@ -18,7 +22,8 @@ public class ClassFile {
 
         readMagic(input);
         Version version = readVersion(input);
-        return new ClassFile(version);
+        ConstantPool constantPool = ConstantPool.read(input);
+        return new ClassFile(version, constantPool);
     }
 
     private static void readMagic(DataInput in) throws IOException {
@@ -37,5 +42,9 @@ public class ClassFile {
 
     public Version getVersion() {
         return version;
+    }
+
+    public ConstantPool getConstantPool() {
+        return constantPool;
     }
 }

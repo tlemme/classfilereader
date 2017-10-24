@@ -1,6 +1,5 @@
-package at.lemme.classfilereader.test;
+package at.lemme.classfilereader;
 
-import at.lemme.classfilereader.ClassFile;
 import org.junit.Test;
 
 import java.io.IOException;

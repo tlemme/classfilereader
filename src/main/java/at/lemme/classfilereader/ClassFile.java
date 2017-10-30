@@ -21,11 +21,8 @@ public class ClassFile {
         DataInput input = new DataInputStream(is);
 
         readMagic(input);
-
         Version version = readVersion(input);
-
         ConstantPool constantPool = ConstantPool.read(input);
-
         return new ClassFile(version, constantPool);
     }
 

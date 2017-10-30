@@ -15,6 +15,15 @@ public final class ConstantDouble implements Constant {
         return new ConstantDouble(value);
     }
 
+    public double getValue() {
+        return value;
+    }
+
+    @Override
+    public Type getType() {
+        return Type.CONSTANT_DOUBLE;
+    }
+
     @Override
     public String toString() {
         return "[ConstantDouble value=" + value + "]";

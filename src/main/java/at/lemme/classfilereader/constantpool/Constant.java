@@ -5,24 +5,43 @@ import java.io.IOException;
 
 public interface Constant {
 
-    static final int CONSTANT_CLASS = 7;
-    static final int CONSTANT_FIELDREF = 9;
-    static final int CONSTANT_METHODREF = 10;
-    static final int CONSTANT_INTERFACE_METHODREF = 11;
-    static final int CONSTANT_STRING = 8;
-    static final int CONSTANT_INTEGER = 3;
-    static final int CONSTANT_FLOAT = 4;
-    static final int CONSTANT_LONG = 5;
-    static final int CONSTANT_DOUBLE = 6;
-    static final int CONSTANT_NAME_AND_TYPE = 12;
-    static final int CONSTANT_UTF8 = 1;
-    static final int CONSTANT_METHOD_HANDLE = 15;
-    static final int CONSTANT_METHOD_TYPE = 16;
-    static final int CONSTANT_INVOKE_DYNAMIC = 18;
+    enum Type {
+
+        CONSTANT_CLASS(7),
+        CONSTANT_FIELDREF(9),
+        CONSTANT_METHODREF(10),
+        CONSTANT_INTERFACE_METHODREF(11),
+        CONSTANT_STRING(8),
+        CONSTANT_INTEGER(3),
+        CONSTANT_FLOAT(4),
+        CONSTANT_LONG(5),
+        CONSTANT_DOUBLE(6),
+        CONSTANT_NAME_AND_TYPE(12),
+        CONSTANT_UTF8(1),
+        CONSTANT_METHOD_HANDLE(15),
+        CONSTANT_METHOD_TYPE(16),
+        CONSTANT_INVOKE_DYNAMIC(18);
+
+        public final int value;
+
+        Type(int value) {
+            this.value = value;
+        }
+
+        public static Type of(int value) {
+            for (Type c : values()) {
+                if (c.value == value) {
+                    return c;
+                }
+            }
+            throw new IllegalArgumentException("No Constant Pool Type for value " + value);
+        }
+
+    }
 
     static Constant read(DataInput input) throws IOException {
         int tag = input.readUnsignedByte();
-        Type type = Type.fromValue(tag);
+        Type type = Type.of(tag);
         switch (type) {
             case CONSTANT_UTF8:
                 return ConstantUtf8.read(input);
@@ -57,5 +76,6 @@ public interface Constant {
         throw new IllegalArgumentException("Unknown tag " + tag);
     }
 
+    Type getType();
     String toString(Constant[] pool);
 }

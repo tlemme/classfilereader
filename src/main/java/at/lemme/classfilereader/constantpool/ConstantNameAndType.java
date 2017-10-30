@@ -3,6 +3,8 @@ package at.lemme.classfilereader.constantpool;
 import java.io.DataInput;
 import java.io.IOException;
 
+import static at.lemme.classfilereader.constantpool.Constant.Type.CONSTANT_NAME_AND_TYPE;
+
 public final class ConstantNameAndType implements Constant {
     private final int nameIndex;
     private final int descriptorIndex;
@@ -17,6 +19,19 @@ public final class ConstantNameAndType implements Constant {
         int nameIndex = input.readUnsignedShort();
         int descriptorIndex = input.readUnsignedShort();
         return new ConstantNameAndType(nameIndex, descriptorIndex);
+    }
+
+    public int getNameIndex() {
+        return nameIndex;
+    }
+
+    public int getDescriptorIndex() {
+        return descriptorIndex;
+    }
+
+    @Override
+    public Type getType() {
+        return CONSTANT_NAME_AND_TYPE;
     }
 
     @Override

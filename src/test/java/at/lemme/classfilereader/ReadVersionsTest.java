@@ -39,7 +39,8 @@ public class ReadVersionsTest {
     @Test
     public void testReadVersion() throws IOException {
         // GIVEN
-        InputStream in = ReadVersionsTest.class.getResourceAsStream("/versions/SampleClass" + versionSuffix + ".class");
+        InputStream in = ReadVersionsTest.class.getResourceAsStream(
+                "/versions/SampleClass" + versionSuffix + ".class");
 
         // WHEN
         ClassFile classFile = ClassFile.read(in);
@@ -47,5 +48,4 @@ public class ReadVersionsTest {
         //THEN
         assertThat(classFile.getVersion()).isEqualTo(version);
     }
-
 }

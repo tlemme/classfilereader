@@ -3,6 +3,8 @@ package at.lemme.classfilereader.constantpool;
 import java.io.DataInput;
 import java.io.IOException;
 
+import static at.lemme.classfilereader.constantpool.Constant.Type.CONSTANT_UTF8;
+
 public final class ConstantUtf8 implements Constant {
     private final byte[] bytes;
 
@@ -16,6 +18,11 @@ public final class ConstantUtf8 implements Constant {
         byte[] bytes = new byte[length];
         input.readFully(bytes);
         return new ConstantUtf8(bytes);
+    }
+
+    @Override
+    public Type getType() {
+        return CONSTANT_UTF8;
     }
 
     public String getString(){

@@ -3,6 +3,8 @@ package at.lemme.classfilereader.constantpool;
 import java.io.DataInput;
 import java.io.IOException;
 
+import static at.lemme.classfilereader.constantpool.Constant.Type.CONSTANT_FIELDREF;
+
 public final class ConstantFieldRef implements Constant {
     private final int classIndex;
     private final int nameAndTypeIndex;
@@ -17,6 +19,19 @@ public final class ConstantFieldRef implements Constant {
         int classIndex = input.readUnsignedShort();
         int nameAndTypeIndex = input.readUnsignedShort();
         return new ConstantFieldRef(classIndex, nameAndTypeIndex);
+    }
+
+    public int getClassIndex() {
+        return classIndex;
+    }
+
+    public int getNameAndTypeIndex() {
+        return nameAndTypeIndex;
+    }
+
+    @Override
+    public Type getType() {
+        return CONSTANT_FIELDREF;
     }
 
     @Override

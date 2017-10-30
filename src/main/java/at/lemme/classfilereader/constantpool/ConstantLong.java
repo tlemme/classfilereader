@@ -15,6 +15,15 @@ public final class ConstantLong implements Constant {
         return new ConstantLong(value);
     }
 
+    public long getValue() {
+        return value;
+    }
+
+    @Override
+    public Type getType() {
+        return Type.CONSTANT_LONG;
+    }
+
     @Override
     public String toString() {
         return "[ConstantLong value=" + value + "]";

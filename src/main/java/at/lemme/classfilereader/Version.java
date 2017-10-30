@@ -19,16 +19,6 @@ public enum Version {
         this.minor = minor;
     }
 
-    public static Version of(int major) {
-        for (Version v : Version.values()) {
-            if (v.major == major) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No matching Java Class File version " +
-                "for given major version found: " + major);
-    }
-
     public static Version of(int major, int minor) {
         for (Version v : Version.values()) {
             if (v.major == major && v.minor == minor) {

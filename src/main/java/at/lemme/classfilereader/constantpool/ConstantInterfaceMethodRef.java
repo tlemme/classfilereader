@@ -3,6 +3,8 @@ package at.lemme.classfilereader.constantpool;
 import java.io.DataInput;
 import java.io.IOException;
 
+import static at.lemme.classfilereader.constantpool.Constant.Type.CONSTANT_INTERFACE_METHODREF;
+
 public final class ConstantInterfaceMethodRef implements Constant {
     private final int classIndex;
     private final int nameAndTypeIndex;
@@ -17,6 +19,19 @@ public final class ConstantInterfaceMethodRef implements Constant {
         int classIndex = input.readUnsignedShort();
         int nameAndTypeIndex = input.readUnsignedShort();
         return new ConstantInterfaceMethodRef(classIndex, nameAndTypeIndex);
+    }
+
+    public int getClassIndex() {
+        return classIndex;
+    }
+
+    public int getNameAndTypeIndex() {
+        return nameAndTypeIndex;
+    }
+
+    @Override
+    public Type getType() {
+        return CONSTANT_INTERFACE_METHODREF;
     }
 
     @Override

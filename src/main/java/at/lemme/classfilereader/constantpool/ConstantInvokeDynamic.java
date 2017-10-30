@@ -3,6 +3,8 @@ package at.lemme.classfilereader.constantpool;
 import java.io.DataInput;
 import java.io.IOException;
 
+import static at.lemme.classfilereader.constantpool.Constant.Type.CONSTANT_INVOKE_DYNAMIC;
+
 public final class ConstantInvokeDynamic implements Constant {
     private final int bootstrapMethodAttrIndex;
     private final int nameAndTypeIndex;
@@ -17,6 +19,19 @@ public final class ConstantInvokeDynamic implements Constant {
         int bootstrapMethodAttrIndex = input.readUnsignedShort();
         int nameAndTypeIndex = input.readUnsignedShort();
         return new ConstantInvokeDynamic(bootstrapMethodAttrIndex, nameAndTypeIndex);
+    }
+
+    public int getBootstrapMethodAttrIndex() {
+        return bootstrapMethodAttrIndex;
+    }
+
+    public int getNameAndTypeIndex() {
+        return nameAndTypeIndex;
+    }
+
+    @Override
+    public Type getType() {
+        return CONSTANT_INVOKE_DYNAMIC;
     }
 
     @Override
